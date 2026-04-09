@@ -24,7 +24,7 @@ def start_chat():
         # client.chats.create 会创建一个包含上下文记忆的对话实例
         # 对于纯文本对话，强烈推荐使用 gemini-2.5-flash，速度极快且成本低
         # 如果需要极强的逻辑推理，可以改为 "gemini-2.5-pro"
-        chat = client.chats.create(model="Deep Research Pro Preview")
+        chat = client.chats.create(model="gemini-3.0-pro")
 
         while True:
             # 等待用户输入
