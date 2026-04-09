@@ -7,8 +7,12 @@ from google import genai
 # 强制将控制台输出编码设置为 UTF-8
 sys.stdout.reconfigure(encoding='utf-8')
 
+# 获取脚本所在目录，确保无论从哪里运行都能找到 .env 文件
+script_dir = os.path.dirname(os.path.abspath(__file__))
+env_path = os.path.join(script_dir, '.env')
+
 # 从 .env 文件加载环境变量
-load_dotenv()
+load_dotenv(env_path)
 
 # 从环境变量读取 API Key
 api_key = os.getenv("GEMINI_API_KEY")

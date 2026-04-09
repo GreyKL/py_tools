@@ -6,8 +6,12 @@ from google import genai
 # 强制终端输出 UTF-8，防止中文乱码
 sys.stdout.reconfigure(encoding='utf-8')
 
+# 获取脚本所在目录，确保无论从哪里运行都能找到 .env 文件
+script_dir = os.path.dirname(os.path.abspath(__file__))
+env_path = os.path.join(script_dir, '.env')
+
 # 从 .env 文件加载环境变量
-load_dotenv()
+load_dotenv(env_path)
 
 # 从环境变量读取 API Key
 API_KEY = os.getenv("GEMINI_API_KEY")
@@ -24,7 +28,7 @@ def start_chat():
         # client.chats.create 会创建一个包含上下文记忆的对话实例
         # 对于纯文本对话，强烈推荐使用 gemini-2.5-flash，速度极快且成本低
         # 如果需要极强的逻辑推理，可以改为 "gemini-2.5-pro"
-        chat = client.chats.create(model="gemini-3.0-pro")
+        chat = client.chats.create(model="gemini-3-flash-preview")
 
         while True:
             # 等待用户输入
